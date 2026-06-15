@@ -104,3 +104,12 @@ select booking_id, user_id, match_id, coalesce(payment_status, 'Action Required'
 select booking_id, full_name,fixture, total_cost::int from users 
   inner join bookings on bookings.user_id= users.user_id 
   inner join matches on matches.match_id = bookings.match_id;
+  
+  -- 5
+select users.user_id, full_name, bookings.booking_id from users
+  left join bookings on  users.user_id = bookings.user_id;
+
+-- 6
+
+  select booking_id, match_id, total_cost::int from bookings
+    where total_cost > (select avg(total_cost) from bookings);
