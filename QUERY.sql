@@ -96,4 +96,11 @@ select user_id,full_name, email from users
   where full_name ilike 'Tanvir%'
   or full_name ilike '%Haque';
   
-  
+  --3
+select booking_id, user_id, match_id, coalesce(payment_status, 'Action Required') as systematic_status from bookings
+  where payment_status is null;
+
+-- 4
+select booking_id, full_name,fixture, total_cost::int from users 
+  inner join bookings on bookings.user_id= users.user_id 
+  inner join matches on matches.match_id = bookings.match_id;
