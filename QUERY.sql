@@ -113,3 +113,8 @@ select users.user_id, full_name, bookings.booking_id from users
 
   select booking_id, match_id, total_cost::int from bookings
     where total_cost > (select avg(total_cost) from bookings);
+    
+    -- 7
+select match_id, fixture, base_ticket_price from matches
+order by base_ticket_price desc
+limit 2 offset 1
